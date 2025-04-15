@@ -85,7 +85,7 @@ export const EdgeFunctionTesterSheet = ({ visible, onClose }: EdgeFunctionTester
 
   const { data: config } = useProjectPostgrestConfigQuery({ projectRef })
   const { data: settings } = useProjectSettingsV2Query({ projectRef })
-  const { data: accessToken } = useSessionAccessTokenQuery({ enabled: IS_PLATFORM })
+  const { data: accessToken } = useSessionAccessTokenQuery({ enabled: !IS_PLATFORM })
   const getImpersonatedRoleState = useGetImpersonatedRoleState()
   const { serviceKey } = getAPIKeys(settings)
 

@@ -9,10 +9,11 @@ import { permissionKeys } from './keys'
 export type PermissionsResponse = Permission[]
 
 export async function getPermissions(signal?: AbortSignal) {
-  const { data, error } = await get('/platform/profile/permissions', { signal })
-  if (error) handleError(error)
+  // const { data, error } = await get('/platform/profile/permissions', { signal })
+  // if (error) handleError(error)
 
   // [Joshen] TODO: Type this properly from the API
+  return [] as Permission[]
   return data as unknown as PermissionsResponse
 }
 

@@ -81,7 +81,7 @@ function Feedback({ className }: { className?: string }) {
   const sendTelemetryEvent = useSendTelemetryEvent()
   const { mutate: sendFeedbackComment } = useSendFeedbackMutation()
   const supabase = useConstant(() =>
-    IS_PLATFORM
+    !IS_PLATFORM
       ? createClient<Database>(
           process.env.NEXT_PUBLIC_SUPABASE_URL!,
           process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!

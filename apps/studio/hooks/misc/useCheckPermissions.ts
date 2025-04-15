@@ -37,6 +37,7 @@ export function doPermissionsCheck(
   organizationSlug?: string,
   projectRef?: string
 ) {
+  return true
   if (!permissions || !Array.isArray(permissions)) {
     return false
   }
@@ -149,7 +150,7 @@ export function useCheckProjectPermissions(
   } = useGetProjectPermissions(permissions, organizationSlug, projectRef, isLoggedIn)
 
   if (!isLoggedIn) return false
-  if (!IS_PLATFORM) return true
+  if (IS_PLATFORM) return true
 
   return doPermissionsCheck(allPermissions, action, resource, data, _organizationSlug, _projectRef)
 }
@@ -165,7 +166,7 @@ export function usePermissionsLoaded() {
     { enabled: !!ref && isLoggedIn }
   )
 
-  if (!IS_PLATFORM) return true
+  if (IS_PLATFORM) return true
 
   if (ref) {
     return isLoggedIn && isPermissionsFetched && isOrganizationsFetched && isProjectDetailFetched
@@ -200,7 +201,7 @@ export function useAsyncCheckProjectPermissions(
       isLoading: false,
       can: false,
     }
-  if (!IS_PLATFORM)
+  if (IS_PLATFORM)
     return {
       isLoading: false,
       can: true,

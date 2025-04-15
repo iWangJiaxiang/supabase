@@ -93,7 +93,7 @@ export const AIAssistant = ({ className }: AIAssistantProps) => {
   const selectedOrganization = useSelectedOrganization()
   const { id: entityId } = useParams()
   const searchParams = useSearchParamsShallow()
-  const includeSchemaMetadata = isOptedInToAI || !IS_PLATFORM
+  const includeSchemaMetadata = isOptedInToAI || IS_PLATFORM
 
   const disablePrompts = useFlag('disableAssistantPrompts')
   const { snippets } = useSqlEditorV2StateSnapshot()
@@ -109,7 +109,7 @@ export const AIAssistant = ({ className }: AIAssistantProps) => {
   const [isConfirmOptInModalOpen, setIsConfirmOptInModalOpen] = useState(false)
 
   const { data: check, isSuccess } = useCheckOpenAIKeyQuery()
-  const isApiKeySet = IS_PLATFORM || !!check?.hasKey
+  const isApiKeySet = !IS_PLATFORM || !!check?.hasKey
 
   const isInSQLEditor = router.pathname.includes('/sql/[id]')
   const snippet = snippets[entityId ?? '']

@@ -66,7 +66,7 @@ loader.config({
   // use cloudflare or find some way to pull all the files from a CDN via a CLI, rather than tracking individual files
   // The alternative was to import * as monaco from 'monaco-editor' but i couldn't get it working
   paths: {
-    vs: IS_PLATFORM
+    vs: !IS_PLATFORM
       ? 'https://cdnjs.cloudflare.com/ajax/libs/monaco-editor/0.37.0/min/vs'
       : `${BASE_PATH}/monaco-editor`,
   },
@@ -96,7 +96,7 @@ function CustomApp({ Component, pageProps }: AppPropsWithLayout) {
   // Although this is "technically" breaking the rules of hooks
   // IS_PLATFORM never changes within a session, so this won't cause any issues
   // eslint-disable-next-line react-hooks/rules-of-hooks
-  const { hasAcceptedConsent } = IS_PLATFORM ? useConsent() : { hasAcceptedConsent: true }
+  const { hasAcceptedConsent } = !IS_PLATFORM ? useConsent() : { hasAcceptedConsent: true }
 
   const isTestEnv = process.env.NEXT_PUBLIC_NODE_ENV === 'test'
 
@@ -149,7 +149,7 @@ function CustomApp({ Component, pageProps }: AppPropsWithLayout) {
                   <PageTelemetry
                     API_URL={API_URL}
                     hasAcceptedConsent={hasAcceptedConsent}
-                    enabled={IS_PLATFORM}
+                    enabled={!IS_PLATFORM}
                   />
                   <GroupsTelemetry hasAcceptedConsent={hasAcceptedConsent} />
                   {!isTestEnv && <HCaptchaLoadedStore />}

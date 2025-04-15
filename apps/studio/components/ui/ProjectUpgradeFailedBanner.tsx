@@ -13,7 +13,7 @@ import { X } from 'lucide-react'
 
 const ProjectUpgradeFailedBanner = () => {
   const { ref } = useParams()
-  const { data } = useProjectUpgradingStatusQuery({ projectRef: ref }, { enabled: IS_PLATFORM })
+  const { data } = useProjectUpgradingStatusQuery({ projectRef: ref }, { enabled: !IS_PLATFORM })
   const { status, initiated_at, error } = data?.databaseUpgradeStatus ?? {}
 
   const key = `supabase-upgrade-${ref}-${initiated_at}`

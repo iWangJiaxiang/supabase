@@ -127,7 +127,7 @@ const LayoutHeader = ({
               {showOrgSelection &&
               // hides org dropdown for old layout
               (newLayoutPreview || showLayoutHeader) &&
-              IS_PLATFORM ? (
+              !IS_PLATFORM ? (
                 <>
                   <LayoutHeaderDivider className="hidden md:block" />
                   <OrganizationDropdown />
@@ -207,7 +207,7 @@ const LayoutHeader = ({
         </div>
         <div className="flex items-center gap-x-2">
           {customHeaderComponents && customHeaderComponents}
-          {IS_PLATFORM ? (
+          {!IS_PLATFORM ? (
             <>
               <FeedbackDropdown />
               <NotificationsPopoverV2 />

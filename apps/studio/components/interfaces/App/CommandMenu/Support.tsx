@@ -35,7 +35,7 @@ const useSupportCommands = () => {
     []
   )
 
-  useRegisterCommands(COMMAND_MENU_SECTIONS.SUPPORT, commands, { enabled: IS_PLATFORM })
+  useRegisterCommands(COMMAND_MENU_SECTIONS.SUPPORT, commands, { enabled: !IS_PLATFORM })
 }
 
 export { useSupportCommands }

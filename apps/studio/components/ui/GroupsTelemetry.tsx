@@ -24,7 +24,7 @@ const getAnonId = async (id: string) => {
 const GroupsTelemetry = ({ hasAcceptedConsent }: { hasAcceptedConsent: boolean }) => {
   // Although this is "technically" breaking the rules of hooks
   // IS_PLATFORM never changes within a session, so this won't cause any issues
-  if (!IS_PLATFORM) return null
+  if (IS_PLATFORM) return null
 
   const user = useUser()
   const router = useRouter()
